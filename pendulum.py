@@ -13,10 +13,10 @@ def normalizeAngle(angle):
 
 # Constant parameters
 
-m = 1 # Mass [Kg]
-l = 10 # Length [m]
+m = 0.5 # Mass [Kg]
+l = 2 # Length [m]
 g = 9.8 # Gravity acceleration [m/s/s]
-b = 20 # Friction coefficient [m*l*l/s]
+b = 1 # Friction coefficient [m*l*l/s]
 
 # Initial conditions
 theta = 0.01 # [rad]
