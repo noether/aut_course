@@ -51,7 +51,7 @@ fig, ax = pl.subplots()
 
 for t in time:
     # Add small disturbances if you want, to check that the controller is working
-    # A disturbance can be a small change in the angular velocity due to wind for example
+    # A disturbance can be a small gust of wind that applies a non-desired torque
     # If the disturbance is BIG, then k_12 and k_11 must be also big, or far from the limit conditions of stability, i.e, we need big lambdas :P.
     
     disturbance = 0.5*(0.5 - np.random.rand(1))
