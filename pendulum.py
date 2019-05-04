@@ -54,7 +54,7 @@ for t in time:
     # A disturbance can be a small change in the angular velocity due to wind for example
     # If the disturbance is BIG, then k_12 and k_11 must be also big, or far from the limit conditions of stability, i.e, we need big lambdas :P.
     
-    # X[1][0] = X[1][0] + 0.0005*(0.5 - np.random.randn(1))
+    # X[1][0] = X[1][0] + 0.0005*(0.5 - np.random.rand(1))
 
     # Controller for C = I
     # K = [k11 k12]
