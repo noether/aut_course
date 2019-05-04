@@ -19,10 +19,17 @@ g = 9.8 # Gravity acceleration [m/s/s]
 b = 1 # Friction coefficient [m*l*l/s]
 
 # Initial conditions
-theta = 0.001 # [rad]
-dot_theta = -0.0 # [rad/s]
+theta = 0.02 # [rad]
+dot_theta = -0.1 # [rad/s]
 
 X = np.array([[theta], [dot_theta]]) # Construct the state-vector
+
+# Operational point
+theta_star = 0
+theta_dot_star = 0
+x_star = np.array([[theta_star],[theta_dot_star]])
+
+u_star = 0
 
 # Simulation parameters
 Tf = 30 # Final time [s]
@@ -43,19 +50,23 @@ pl.ion()
 fig, ax = pl.subplots()
 
 for t in time:
+    # Add small disturbances if you want, to check that the controller is working
+    # If the disturbance is BIG, then k_12 and k_11 must be also big, or far from the limit conditions of stability, i.e, we need big lambdas :P.
+    #X[0][0] = X[0][0] + 0.001*(0.5 - np.random.randn(1))
 
     # Controller for C = I
     # K = [k11 k12]
     k12 = b - 1
-    k11 = -g*l*m - 0.25    # Stable
+    k11 = -g*l*m - 10    # Stable
     # k11 = -g*l*m + 0.25  # Inestable
 
     B = np.array([[0],[1]])
     C = np.eye(2)
     K = np.array([k11, k12])
-    u = K.dot(C).dot(X) # u = KC X
+    delta_X = X - x_star
+    delta_u = K.dot(C).dot(delta_X) # delta_u = KC delta_X
 
-    T = u # Control action
+    T = u_star + delta_u # Control action
 
     dot_dot_theta = 1.0/(m*l*l) * (m*g*l*X[0][0] - b*X[1][0] + T) # Dynamics
 
