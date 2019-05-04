@@ -58,7 +58,7 @@ for t in time:
     # K = [k11 k12]
     k12 = b - 1
     k11 = -g*l*m - 10    # Stable
-    # k11 = -g*l*m + 0.25  # Inestable
+    # k11 = -g*l*m + 0.25  # Unestable
 
     B = np.array([[0],[1]])
     C = np.eye(2)
