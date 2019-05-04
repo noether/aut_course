@@ -54,7 +54,7 @@ for t in time:
     # A disturbance can be a small change in the angular velocity due to wind for example
     # If the disturbance is BIG, then k_12 and k_11 must be also big, or far from the limit conditions of stability, i.e, we need big lambdas :P.
     
-    # X[1][0] = X[1][0] + 0.0005*(0.5 - np.random.rand(1))
+    disturbance = 0.5*(0.5 - np.random.rand(1))
 
     # Controller for C = I
     # K = [k11 k12]
@@ -70,7 +70,7 @@ for t in time:
 
     T = u_star + delta_u # Control action
 
-    dot_dot_theta = 1.0/(m*l*l) * (m*g*l*X[0][0] - b*X[1][0] + T) # Dynamics
+    dot_dot_theta = 1.0/(m*l*l) * (m*g*l*X[0][0] - b*X[1][0] + T + disturbance) # Dynamics
 
     X[1][0] = X[1][0] + dot_dot_theta*DT # Euler integration
     X[0][0] = X[0][0] + X[1][0]*DT # Euler integration
